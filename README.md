@@ -2,7 +2,7 @@
 
 **Author:** Gavin Walters
 **Status:** Experimental → Evolving Framework
-**Language:** Rust
+**Language:** Rust (for experimental, but goal is to be language agnostic)
 
 ---
 
