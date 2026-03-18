@@ -1,7 +1,9 @@
 # ⚙️ Regulated Cell Architecture (RCA)
 
 **Author:** Gavin Walters
+
 **Status:** Experimental → Evolving Framework
+
 **Language:** Rust (for experimental, but goal is to be language agnostic)
 
 ---
