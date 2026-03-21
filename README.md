@@ -386,4 +386,4 @@ RCA aims to become:
 
 ## 16. License
 
-TBD
+Copyright (c) 2026 Gavin Walters. This project is licensed under the GNU GPLv3 - see the LICENSE file for details.
