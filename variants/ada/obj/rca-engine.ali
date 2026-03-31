@@ -1,0 +1,250 @@
+V "GNAT Lib v14"
+A -gnatA
+A -gnatwa
+A -gnat2012
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_LOCAL_ALLOCATORS
+RV NO_NESTED_FINALIZATION
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U rca.engine%b		rca-engine.adb		5ade7adc NE OO PK IU
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W rca%s			rca.ads			rca.ali
+Z system%s		system.ads		system.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.concat_3%s	s-conca3.adb		s-conca3.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+U rca.engine%s		rca-engine.ads		6b830c6e EE NE OO PK IU
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W rca%s			rca.ads			rca.ali
+W rca.cell%s		rca-cell.adb		rca-cell.ali
+W rca.control%s		rca-control.ads		rca-control.ali
+W rca.data%s		rca-data.ads		rca-data.ali
+W rca.thread%s		rca-thread.adb		rca-thread.ali
+Z system%s		system.ads		system.ali
+
+D ada.ads		20240801081713 76789da1 ada%s
+D a-charac.ads		20240801081713 2d3ec45b ada.characters%s
+D a-chlat1.ads		20240801081713 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20240801081713 e7970cd9 ada.exceptions%s
+D a-finali.ads		20240801081713 bf4f806b ada.finalization%s
+D a-ioexce.ads		20240801081713 40018c65 ada.io_exceptions%s
+D a-stream.ads		20240801081713 119b8fb3 ada.streams%s
+D a-string.ads		20240801081713 90ac6797 ada.strings%s
+D a-strmap.ads		20240801081713 1f91ebb6 ada.strings.maps%s
+D a-sttebu.ads		20240801081713 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20240801081713 98c60381 ada.strings.unbounded%s
+D a-stuten.ads		20240801081713 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240801081713 9eaa38c6 ada.tags%s
+D a-textio.ads		20240801081713 34ef47de ada.text_io%s
+D a-unccon.ads		20240801081713 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240801081713 9111f9c1 interfaces%s
+D i-cstrea.ads		20240801081713 ffd01b9d interfaces.c_streams%s
+D rca.ads		20260331120641 a2a24ec9 rca%s
+D rca-cell.ads		20260331123525 c04c30c8 rca.cell%s
+D rca-control.ads	20260331120653 02319cdc rca.control%s
+D rca-data.ads		20260331123514 81cb445e rca.data%s
+D rca-engine.ads	20260331120715 0a86037b rca.engine%s
+D rca-engine.adb	20260331123637 fc713df8 rca.engine%b
+D rca-thread.ads	20260331120706 8011a996 rca.thread%s
+D system.ads		20240801081714 14286b0f system%s
+D s-atocou.ads		20240801081713 dc18efc3 system.atomic_counters%s
+D s-conca2.ads		20240801081713 b5fb73f7 system.concat_2%s
+D s-conca3.ads		20240801081713 8a7a19a2 system.concat_3%s
+D s-crtl.ads		20240801081713 beb39b9e system.crtl%s
+D s-exctab.ads		20240801081713 91bef6ef system.exception_table%s
+D s-ficobl.ads		20240801081713 dc5161d4 system.file_control_block%s
+D s-finroo.ads		20240801081713 4ff27390 system.finalization_root%s
+D s-imagei.ads		20240801081713 5e131ce0 system.image_i%s
+D s-imgint.ads		20240801081713 67e4edfb system.img_int%s
+D s-memory.ads		20240801081713 18949c1a system.memory%s
+D s-parame.ads		20250315014742 a1aeab5c system.parameters%s
+D s-putima.ads		20240801081713 17291fe4 system.put_images%s
+D s-retsta.ads		20240801081713 0f6b06cb system.return_stack%s
+D s-secsta.ads		20240801081713 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240801081713 df77073e system.soft_links%s
+D s-stache.ads		20240801081713 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240801081713 1c9580f6 system.standard_library%s
+D s-stalib.adb		20240801081713 eb464a47 system.standard_library%b
+D s-stoele.ads		20240801081713 ccded4e8 system.storage_elements%s
+D s-stratt.ads		20240801081713 a1861007 system.stream_attributes%s
+D s-traent.ads		20240801081713 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240801081713 fa2a7f59 system.unsigned_types%s
+D s-valspe.ads		20240801081714 b0fcd073 system.val_spec%s
+D s-vaispe.ads		20240801081714 8280550e system.value_i_spec%s
+D s-vauspe.ads		20240801081714 89269ba5 system.value_u_spec%s
+D s-vs_int.ads		20240801081714 06b6b724 system.vs_int%s
+D s-vs_uns.ads		20240801081714 e7f47a27 system.vs_uns%s
+D s-wchcon.ads		20240801081714 d9032363 system.wch_con%s
+G a e
+G c Z s b [give_default rca__engine 27 13 none]
+G c Z s b [print_init_status rca__engine 29 14 none]
+G c Z s b [print_running_status rca__engine 30 14 none]
+G c Z s b [print_shutdown_status rca__engine 31 14 none]
+G c Z s b [try_run_engine rca__engine 33 14 none]
+G c Z s s [engine_typeDI rca__engine 21 9 none]
+G c Z s s [engine_typeDA rca__engine 21 9 none]
+G c Z s s [engine_typeDF rca__engine 21 9 none]
+G c Z s s [engine_typeIP rca__engine 21 9 none]
+G c Z b b [state_name rca__engine 15 13 none]
+G c Z b b [mode_name rca__engine 27 13 none]
+G c Z b b [print_control rca__engine 35 14 none]
+G c Z b b [print_data rca__engine 42 14 none]
+G c Z b b [print_cell_data rca__engine 49 14 none]
+G r s data_plane [give_default rca__engine 27 13 none] [data_planeIP rca__data 68 9 none]
+G r l data_plane [give_default rca__engine 27 13 none] [data_planeDI rca__data 68 9 none]
+G r s control_plane [give_default rca__engine 27 13 none] [control_planeIP rca__control 34 9 none]
+G r s system_data [give_default rca__engine 27 13 none] [system_dataIP rca__data 59 9 none]
+G r l system_data [give_default rca__engine 27 13 none] [system_dataDI rca__data 59 9 none]
+G r k system_data [give_default rca__engine 27 13 none] [system_dataDF rca__data 59 9 none]
+G r k data_plane [give_default rca__engine 27 13 none] [data_planeDF rca__data 68 9 none]
+G r j data_plane [give_default rca__engine 27 13 none] [data_planeDA rca__data 68 9 none]
+G r j system_data [give_default rca__engine 27 13 none] [system_dataDA rca__data 59 9 none]
+G r s program_thread [try_run_engine rca__engine 33 14 none] [program_threadIP rca__thread 30 9 none]
+G r s effect [try_run_engine rca__engine 33 14 none] [effectIP rca__thread 23 9 none]
+G r l effect [try_run_engine rca__engine 33 14 none] [effectDI rca__thread 23 9 none]
+G r k effect [try_run_engine rca__engine 33 14 none] [effectDF rca__thread 23 9 none]
+G r c none [try_run_engine rca__engine 33 14 none] [build_tasks rca__thread 36 13 none]
+G r c none [try_run_engine rca__engine 33 14 none] [step rca__thread 41 14 none]
+G r k activity_info [try_run_engine rca__engine 33 14 none] [activity_infoDF rca__data 47 9 none]
+G r j activity_info [try_run_engine rca__engine 33 14 none] [activity_infoDA rca__data 47 9 none]
+G r j data_plane [engine_typeDA rca__engine 21 9 none] [data_planeDA rca__data 68 9 none]
+G r j system_data [engine_typeDA rca__engine 21 9 none] [system_dataDA rca__data 59 9 none]
+G r k system_data [engine_typeDF rca__engine 21 9 none] [system_dataDF rca__data 59 9 none]
+G r k data_plane [engine_typeDF rca__engine 21 9 none] [data_planeDF rca__data 68 9 none]
+G r s data_plane [engine_typeIP rca__engine 21 9 none] [data_planeIP rca__data 68 9 none]
+G r l data_plane [engine_typeIP rca__engine 21 9 none] [data_planeDI rca__data 68 9 none]
+G r s control_plane [engine_typeIP rca__engine 21 9 none] [control_planeIP rca__control 34 9 none]
+G r s system_data [engine_typeIP rca__engine 21 9 none] [system_dataIP rca__data 59 9 none]
+G r l system_data [engine_typeIP rca__engine 21 9 none] [system_dataDI rca__data 59 9 none]
+G r k system_data [engine_typeIP rca__engine 21 9 none] [system_dataDF rca__data 59 9 none]
+G r k data_plane [engine_typeIP rca__engine 21 9 none] [data_planeDF rca__data 68 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 23|6r6 6r33 7r6 7r33
+X 8 a-string.ads
+16K13*Strings 35e16 23|7r10 7r37
+X 11 a-strunb.ads
+85K21*Unbounded 772e26 23|7w18 7r45
+95r4*Null_Unbounded_String{91R9} 23|143r53
+120V13*To_String{string} 23|46s41
+X 14 a-textio.ads
+58K13*Text_IO 785e16 23|6w10 6r37
+284U14*New_Line 23|77s7 80s7 82s7 87s7 90s7 92s7 99s7 102s7 104s7
+565U14*Put_Line 23|37s7 38s7 39s7 44s7 45s7 46s7 51s7 54s13 56s13 78s7 88s7
+. 94s7 100s7
+X 18 rca.ads
+6K9*RCA 8e8 22|9r6 9r23 10r6 10r23 11r6 11r23 12r6 12r23 14r9 39r5 23|9r14
+. 27r28 161r5
+X 19 rca-cell.ads
+12K13*Cell 64e13 22|11w10 11r27
+15i4*Num_Cells{natural} 23|67r28
+22n27*Cell_None{22E9} 23|53r15
+22n38*Cell_Byte{22E9} 23|55r15
+25R9*Cell_Data 30e14 22|30r65 23|49r39 85r65
+25e20*Tag{22E9} 23|52r15
+28i28*Value{natural} 23|56r55
+37n23*Task_Default{37E9} 23|118r46
+37n37*Task_Double_Value{37E9} 23|119r46
+51i7*Id{natural} 23|118m25 119m25
+52e7*The_Task{37E9} 23|118m34 119m34
+55A9*Cell_Array(50R9)<integer>
+X 20 rca-control.ads
+6K13*Control 40e16 22|10w10 10r27 23|27r32
+13E9*State 13e64 23|15r29
+13n19*Init{13E9} 23|18r15
+13n25*Idle{13E9} 23|19r15 124r30
+13n31*Running{13E9} 23|20r15 127r30 133r18
+13n40*Halt{13E9} 23|21r15 121r30
+13n46*Failure{13E9} 23|22r15
+13n55*Shutdown{13E9} 23|23r15 142r42 149r39
+20E9*Mode 20e35 23|27r40
+20n18*Mode_None{20E9} 23|30r15
+20n29*Debug{20E9} 23|31r15 137r40
+34R9*Control_Plane 38e14 22|23r13 23|35r38
+35e7*Current_State{13E9} 23|38r49 121m13 124m13 127m13 131r21 142m25 149m22
+36e7*Current_Mode{20E9} 23|39r48 137r25
+X 21 rca-data.ads
+11K13*Data 83e13 22|9w10 9r27
+43i7*Count{natural} 23|45r63 67m19
+48r7*Description{11|91R9} 23|46r64 143m38
+59R9*System_Data 61e14 22|24r13
+68R9*Data_Plane 77e14 22|22r13 23|42r34
+74r7*Cells{42R9} 23|45r57 67m13
+75r7*Activity{47R9} 23|46r55 135m22 143m25
+X 22 rca-engine.ads
+14K13*Engine 18|6k9 22|39l9 39e15 23|9b18 161l9 161t15
+21R9*Engine_Type 25e14 27r33 29r40 30r43 31r44 33r41 23|64r33 65r11 75r40
+. 85r43 97r44 111r41
+22r7*Ctx{21|68R9} 23|67m9 81r21 93r21 103r21 134r40 135m18 143m21
+23r7*Ctl{20|34R9} 23|79r24 89r24 101r24 121m9 124m9 127m9 131r17 137r21 142m21
+. 149m18
+24r7*Sys{21|59R9}
+27V13*Give_Default{21R9} 23|64b13 69l8 69t20
+29U14*Print_Init_Status 29>33 23|75b14 83l8 83t25 115s7 122s7 125s7 128s7
+29r33 E{21R9} 23|75b33 79r22 81r19
+30U14*Print_Running_Status 30>36 30>56 23|85b14 95l8 95t28 138s19
+30r36 E{21R9} 23|85b36 89r22 93r19
+30r56 Efx{19|25R9} 23|85b56 91r24
+31U14*Print_Shutdown_Status 31>37 23|97b14 105l8 105t29 144s19 150s16
+31r37 E{21R9} 23|97b37 101r22 103r19
+33U14*Try_Run_Engine 33=30 23|111b14 155l8 155t22
+33r30 E{21R9} 23|111b30 115r26 121m7 122r26 124m7 125r26 127m7 128r26 131r15
+. 134r38 135m16 137r19 138r41 142m19 143m19 144r42 149m16 150r39
+X 23 rca-engine.adb
+15V13 State_Name{string} 15b13 15>25 25l8 25t18 38s33
+15e25 S{20|13E9} 17r12
+27V13 Mode_Name{string} 27b13 27>24 33l8 33t17 39s33
+27e24 M{20|20E9} 29r12
+35U14 Print_Control 35b14 35>29 40l8 40t21 79s7 89s7 101s7
+35r29 Ctl{20|34R9} 38r45 39r44
+42U14 Print_Data 42b14 42>26 47l8 47t18 81s7 93s7 103s7
+42r26 DP{21|68R9} 45r54 46r52
+49U14 Print_Cell_Data 49b14 49>31 58l8 58t23 91s7
+49r31 CD{19|25R9} 52r12 56r52
+65r7 E{22|21R9} 67m7 68r14
+112r7 Current_Thread{24|30R9} 117m7 134m22 134r22
+113r7 Efx{24|23R9} 134m45 135r34 138r44 141r19
+X 24 rca-thread.ads
+10K13*Thread 22|12w10 12r27 24|48e15
+23R9*Effect 23|113r24 24|27e14
+24r7*Activity{21|47R9} 23|135r38
+25r7*Handoff{19|25R9} 23|138r48
+26b7*Finished{boolean} 23|141r23
+30R9*Program_Thread 23|112r24 24|34e14
+36V13*Build_Tasks{30R9} 23|117s25
+38a7 Tsks{19|55A9} 23|118r10
+41U14*Step 23|134s16
+X 25 system.ads
+67M9*Address
+X 35 s-memory.ads
+51V13*Alloc{25|67M9} 101i<c,__gnat_malloc>22
+66U14*Free 102i<c,__gnat_free>22
+74V13*Realloc{25|67M9} 103i<c,__gnat_realloc>22
+X 43 s-stalib.adb
+87U14 Break_Start 88i<c,__gnat_break_start>22
+

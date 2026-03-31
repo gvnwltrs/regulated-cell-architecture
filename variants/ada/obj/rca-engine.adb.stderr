@@ -1,0 +1,2 @@
+rca-engine.ads:12:09: warning: no entities of "RCA.Thread" are referenced in spec [-gnatwu]
+rca-engine.ads:12:09: warning: with clause might be moved to body [-gnatwu]

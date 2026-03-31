@@ -1,0 +1,99 @@
+V "GNAT Lib v14"
+A -gnatA
+A -gnatwa
+A -gnat2012
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U rca.cell%b		rca-cell.adb		6322ecf8 NE OO PK IU
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W rca%s			rca.ads			rca.ali
+
+U rca.cell%s		rca-cell.ads		e3253a5f EE NE OO PK IU
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W rca%s			rca.ads			rca.ali
+W rca.data%s		rca-data.ads		rca-data.ali
+
+D ada.ads		20240801081713 76789da1 ada%s
+D a-charac.ads		20240801081713 2d3ec45b ada.characters%s
+D a-chlat1.ads		20240801081713 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20240801081713 e7970cd9 ada.exceptions%s
+D a-finali.ads		20240801081713 bf4f806b ada.finalization%s
+D a-stream.ads		20240801081713 119b8fb3 ada.streams%s
+D a-string.ads		20240801081713 90ac6797 ada.strings%s
+D a-strmap.ads		20240801081713 1f91ebb6 ada.strings.maps%s
+D a-sttebu.ads		20240801081713 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20240801081713 98c60381 ada.strings.unbounded%s
+D a-stuten.ads		20240801081713 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240801081713 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240801081713 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240801081713 9111f9c1 interfaces%s
+D rca.ads		20260331120641 a2a24ec9 rca%s
+D rca-cell.ads		20260331123525 c04c30c8 rca.cell%s
+D rca-cell.adb		20260331123558 a36edc30 rca.cell%b
+D rca-data.ads		20260331123514 81cb445e rca.data%s
+D system.ads		20240801081714 14286b0f system%s
+D s-atocou.ads		20240801081713 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20240801081713 91bef6ef system.exception_table%s
+D s-finroo.ads		20240801081713 4ff27390 system.finalization_root%s
+D s-parame.ads		20250315014742 a1aeab5c system.parameters%s
+D s-putima.ads		20240801081713 17291fe4 system.put_images%s
+D s-retsta.ads		20240801081713 0f6b06cb system.return_stack%s
+D s-secsta.ads		20240801081713 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240801081713 df77073e system.soft_links%s
+D s-stache.ads		20240801081713 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240801081713 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240801081713 ccded4e8 system.storage_elements%s
+D s-stratt.ads		20240801081713 a1861007 system.stream_attributes%s
+D s-traent.ads		20240801081713 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240801081713 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z s b [task_access rca__cell 40 13 none]
+G c Z s b [execute rca__cell 57 13 none]
+G c Z s b [cell_defaults rca__cell 62 13 none]
+G c Z s s [cell_dataIP rca__cell 25 9 none]
+G c Z s s [cell_typeIP rca__cell 50 9 none]
+G c Z s s [Tcell_arrayBIP rca__cell 55 4 none]
+X 15 rca.ads
+6K9*RCA 8e8 16|10r6 10r20 12r9 64r5 17|6r14 55r5
+X 16 rca-cell.ads
+12K13*Cell 15|6k9 16|64l9 64e13 17|6b18 55l9 55t13
+15i4*Num_Cells{natural} 55r35
+22E9*Cell_Data_Tag 22e48 25r26
+22n27*Cell_None{22E9} 25r43 27r15
+22n38*Cell_Byte{22E9} 28r15 17|41r28 44r30 45r31
+25R9*Cell_Data 25d20 30e14 43r18 43r36 60r17 60r35 17|20r17 20r35 34r18 34r36
+25e20*Tag{22E9} 26r12 17|41m21 44r24 45m24
+28i28*Value{natural} 17|41m39 45m42 45r59 45r75
+37E9*Task_Kind 37e55 41r18 52r18 17|32r18
+37n23*Task_Default{37E9} 52r31 17|12r46 40r15
+37n37*Task_Double_Value{37E9} 17|43r15
+40V13*Task_Access{25R9} 41>7 42>7 43>7 17|23s14 31b13 53l8 53t19
+41e7 The_Task{37E9} 17|32b7 38r12
+42r7 Ctx{18|68R9} 17|33b7 36r28
+43r7 Handoff{25R9} 17|34b7 44r16 45r51 45r67 47r23
+50R9*Cell_Type 53e14 55r53 58r24 17|18r24
+51i7*Id{natural} 17|12m25
+52e7*The_Task{37E9} 17|12m34 23r29
+55A9*Cell_Array(50R9)<integer> 62r34 17|8r34 9r16
+57V13*Execute{25R9} 58=7 59>7 60>7 17|17b13 24l8 24t15
+58r7 C{50R9} 17|18b7 23r27
+59r7 Ctx{18|68R9} 17|19b7 23r39
+60r7 Handoff{25R9} 17|20b7 23r44
+62V13*Cell_Defaults{55A9} 17|8b13 15l8 15t21
+X 17 rca-cell.adb
+9a7 Result{16|55A9} 11r16 12m10 14r14
+11i11 I{integer} 12r18 12r31
+X 18 rca-data.ads
+11K13*Data 16|10w10 10r24 18|83e13
+68R9*Data_Plane 16|42r21 59r20 17|19r20 33r21 18|77e14
+

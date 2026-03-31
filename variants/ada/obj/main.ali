@@ -1,0 +1,73 @@
+V "GNAT Lib v14"
+M P W=b
+A -gnatA
+A -gnatwa
+A -gnat2012
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_NESTED_FINALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U main%b		main.adb		2e2b4456 NE OO SU
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W rca%s			rca.ads			rca.ali
+W rca.engine%s		rca-engine.adb		rca-engine.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+
+D ada.ads		20240801081713 76789da1 ada%s
+D a-charac.ads		20240801081713 2d3ec45b ada.characters%s
+D a-chlat1.ads		20240801081713 e0d72e76 ada.characters.latin_1%s
+D a-except.ads		20240801081713 e7970cd9 ada.exceptions%s
+D a-finali.ads		20240801081713 bf4f806b ada.finalization%s
+D a-stream.ads		20240801081713 119b8fb3 ada.streams%s
+D a-string.ads		20240801081713 90ac6797 ada.strings%s
+D a-strmap.ads		20240801081713 1f91ebb6 ada.strings.maps%s
+D a-sttebu.ads		20240801081713 f1ad67a2 ada.strings.text_buffers%s
+D a-strunb.ads		20240801081713 98c60381 ada.strings.unbounded%s
+D a-stuten.ads		20240801081713 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20240801081713 9eaa38c6 ada.tags%s
+D a-unccon.ads		20240801081713 0e9b276f ada.unchecked_conversion%s
+D interfac.ads		20240801081713 9111f9c1 interfaces%s
+D main.adb		20260331120734 24ad472d main%b
+D rca.ads		20260331120641 a2a24ec9 rca%s
+D rca-cell.ads		20260331123525 c04c30c8 rca.cell%s
+D rca-control.ads	20260331120653 02319cdc rca.control%s
+D rca-data.ads		20260331123514 81cb445e rca.data%s
+D rca-engine.ads	20260331120715 0a86037b rca.engine%s
+D rca-thread.ads	20260331120706 8011a996 rca.thread%s
+D system.ads		20240801081714 14286b0f system%s
+D s-atocou.ads		20240801081713 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20240801081713 91bef6ef system.exception_table%s
+D s-finroo.ads		20240801081713 4ff27390 system.finalization_root%s
+D s-parame.ads		20250315014742 a1aeab5c system.parameters%s
+D s-putima.ads		20240801081713 17291fe4 system.put_images%s
+D s-retsta.ads		20240801081713 0f6b06cb system.return_stack%s
+D s-secsta.ads		20240801081713 578279f5 system.secondary_stack%s
+D s-soflin.ads		20240801081713 df77073e system.soft_links%s
+D s-stache.ads		20240801081713 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20240801081713 1c9580f6 system.standard_library%s
+D s-stoele.ads		20240801081713 ccded4e8 system.storage_elements%s
+D s-stratt.ads		20240801081713 a1861007 system.stream_attributes%s
+D s-traent.ads		20240801081713 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20240801081713 fa2a7f59 system.unsigned_types%s
+G a e
+G c Z b b [main standard 19 11 none]
+G r c none [main standard 19 11 none] [give_default rca__engine 27 13 none]
+G r c none [main standard 19 11 none] [try_run_engine rca__engine 33 14 none]
+X 15 main.adb
+19U11*Main 19b11 23l5 23t9
+20r4 E{20|21R9} 22m20 22r20
+X 16 rca.ads
+6K9*RCA 15|13r6 13r22 16|8e8
+X 20 rca-engine.ads
+14K13*Engine 15|13w10 13r26 20|39e15
+21R9*Engine_Type 15|20r8 20|25e14
+27V13*Give_Default{21R9} 15|20s23
+33U14*Try_Run_Engine 15|22s4
+

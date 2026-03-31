@@ -1,0 +1,19 @@
+V "GNAT Lib v14"
+A -gnatA
+A -gnatwa
+A -gnat2012
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U rca%s			rca.ads			a2a24ec9 NE OO PU PK IU
+
+D rca.ads		20260331120641 a2a24ec9 rca%s
+D system.ads		20240801081714 14286b0f system%s
+G a e
+X 1 rca.ads
+6K9*RCA 8l5 8e8
+

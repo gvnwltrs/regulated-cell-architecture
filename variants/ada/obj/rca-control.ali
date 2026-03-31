@@ -1,0 +1,42 @@
+V "GNAT Lib v14"
+A -gnatA
+A -gnatwa
+A -gnat2012
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U rca.control%s		rca-control.ads		a093d215 NE OO PK IU
+W rca%s			rca.ads			rca.ali
+
+D rca.ads		20260331120641 a2a24ec9 rca%s
+D rca-control.ads	20260331120653 02319cdc rca.control%s
+D system.ads		20240801081714 14286b0f system%s
+G a e
+G c Z s s [control_planeIP rca__control 34 9 none]
+X 1 rca.ads
+6K9*RCA 8e8 2|6r9 40r5
+X 2 rca-control.ads
+6K13*Control 1|6k9 2|40l9 40e16
+13E9*State 13e64 35r23
+13n19*Init{13E9} 35r32
+13n25*Idle{13E9}
+13n31*Running{13E9}
+13n40*Halt{13E9}
+13n46*Failure{13E9}
+13n55*Shutdown{13E9}
+20E9*Mode 20e35 36r23
+20n18*Mode_None{20E9}
+20n29*Debug{20E9} 36r32
+27E9*Event 27e30 37r23
+27n19*Event_None{27E9} 37r32
+34R9*Control_Plane 38e14
+35e7*Current_State{13E9}
+36e7*Current_Mode{20E9}
+37e7*Current_Event{27E9}
+

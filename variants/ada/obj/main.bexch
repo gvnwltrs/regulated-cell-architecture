@@ -1,0 +1,24 @@
+[GENERATED OBJECT FILE]
+b__main.o
+[PROJECT FILES]
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/rca.gpr
+20260331123615 db110be465866dc1fd2c16d9d8841560
+[BOUND OBJECT FILES]
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/rca.o
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/rca-control.o
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/rca-data.o
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/rca-cell.o
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/rca-thread.o
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/rca-engine.o
+/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/main.o
+[GENERATED SOURCE FILES]
+b__main.ads
+b__main.adb
+b__main.ali
+[RESULTING OPTIONS]
+-L/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/
+-L/home/gwalters/Workspace/regulated-cell-architecture/variants/ada/obj/
+-L/usr/lib/gcc/x86_64-linux-gnu/14/adalib/
+-shared
+-lgnat-14
+-ldl
