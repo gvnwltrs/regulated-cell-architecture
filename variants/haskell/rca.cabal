@@ -1,0 +1,25 @@
+cabal-version: 2.4
+name:          rca
+version:       0.1.0.0
+synopsis:      Regulated Cell Architecture - Haskell Variant
+author:        Gavin Walters
+build-type:    Simple
+
+library
+  exposed-modules:
+    RCA.Data
+    RCA.Control
+    RCA.Cell
+    RCA.Thread
+    RCA.Engine
+  hs-source-dirs: src
+  build-depends:  base >=4.14 && <5
+  default-language: Haskell2010
+
+executable rca-run
+  main-is:       Main.hs
+  hs-source-dirs: app
+  build-depends:
+    base >=4.14 && <5,
+    rca
+  default-language: Haskell2010
