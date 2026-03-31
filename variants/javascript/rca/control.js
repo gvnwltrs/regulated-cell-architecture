@@ -1,0 +1,50 @@
+///////////////////////////////////////////////////////////////////////////////
+// Regulated Cell Architecture (RCA) - JavaScript Variant
+// Control Plane
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+// (1) States - Status: FREEZE
+// (2) Modes  - Status: MUTABLE
+// (3) Events - Status: MUTABLE
+//
+// Represented as string constants.
+///////////////////////////////////////////////////////////////////////////////
+
+const State = Object.freeze({
+  INIT:     "Init",
+  IDLE:     "Idle",
+  RUNNING:  "Running",
+  HALT:     "Halt",
+  FAILURE:  "Failure",
+  SHUTDOWN: "Shutdown",
+});
+
+const Mode = Object.freeze({
+  NONE:  "None",
+  DEBUG: "Debug",
+});
+
+const Event = Object.freeze({
+  NONE: "None",
+});
+
+///////////////////////////////////////////////////////////////////////////////
+// Control Plane
+///////////////////////////////////////////////////////////////////////////////
+
+// Status: FREEZE
+function createControlPlane() {
+  return {
+    state: State.INIT,
+    mode:  Mode.DEBUG,
+    event: Event.NONE,
+  };
+}
+
+module.exports = {
+  State,
+  Mode,
+  Event,
+  createControlPlane,
+};
