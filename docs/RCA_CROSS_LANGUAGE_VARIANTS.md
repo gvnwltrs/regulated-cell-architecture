@@ -6,9 +6,9 @@
 
 **Source Language:** Rust (edition 2024)
 
-**Variant Languages:** C, C++, Python, Ada, Zig, Haskell, Common Lisp, JavaScript, Java
+**Variant Languages:** C, C++, Python, Ada, Zig, Haskell, Common Lisp, JavaScript, Java, Go
 
-**Status:** All ten implementations verified — identical runtime behavior confirmed
+**Status:** All eleven implementations verified — identical runtime behavior confirmed
 
 ---
 
@@ -30,9 +30,9 @@
 
 ## 1. Introduction
 
-One of the foundational claims of Regulated Cell Architecture is that it is a **language-agnostic execution model**. The architecture is defined by a set of structural relationships and behavioral contracts — not by language-specific features. To validate this claim, the original Rust implementation was ported to nine additional languages spanning systems programming, high-assurance engineering, functional programming, dynamic scripting, and managed runtimes.
+One of the foundational claims of Regulated Cell Architecture is that it is a **language-agnostic execution model**. The architecture is defined by a set of structural relationships and behavioral contracts — not by language-specific features. To validate this claim, the original Rust implementation was ported to ten additional languages spanning systems programming, high-assurance engineering, functional programming, dynamic scripting, and managed runtimes.
 
-Every variant implements the same default pipeline: a two-cell thread where Cell 0 produces `Byte(42)` and Cell 1 doubles it to `Byte(84)`. The engine drives the same state machine transitions (`Init → Halt → Idle → Running → Shutdown`) and all ten implementations produce identical output.
+Every variant implements the same default pipeline: a two-cell thread where Cell 0 produces `Byte(42)` and Cell 1 doubles it to `Byte(84)`. The engine drives the same state machine transitions (`Init → Halt → Idle → Running → Shutdown`) and all eleven implementations produce identical output.
 
 This document analyzes how each language maps to RCA's primitives, what the porting process reveals about the architecture's design, and how future ports should be approached.
 
@@ -191,7 +191,7 @@ flowchart TD
 | Engine Loop | `loop` with `case` on state |
 
 **Key Observations:**
-- Ada's `in` parameter mode is the strongest compile-time enforcement of the cell isolation contract across all ten variants. When `Ctx` is declared `in Data_Plane`, the compiler rejects any attempt to modify it — no `const` keyword, no borrow checker, just a parameter mode declaration.
+- Ada's `in` parameter mode is the strongest compile-time enforcement of the cell isolation contract across all eleven variants. When `Ctx` is declared `in Data_Plane`, the compiler rejects any attempt to modify it — no `const` keyword, no borrow checker, just a parameter mode declaration.
 - Discriminated records are Ada's native tagged union. The `Cell_Data` record uses a discriminant `Tag : Cell_Data_Tag` with variant-specific fields in a `case` block. This is structurally identical to Rust's enum-with-data.
 - Reserved words required renaming: `Body` → `Content`, `Task` → `The_Task`. Ada's reserved word list is larger than most languages, and identifiers that are common in other languages can collide.
 - The `Mode` type conflicted with `Ada.Text_IO.Mode` due to `use` clauses pulling both into scope. This required fully qualifying as `RCA.Control.Mode`.
@@ -345,6 +345,36 @@ flowchart TD
 
 ---
 
+### 3.10 Go Variant
+
+**Directory:** `variants/go/`
+
+**Language Characteristics:** Statically typed, garbage collected, struct-and-interface composition, goroutines (unused here), explicit error handling, no generics-based algebraic types.
+
+**RCA Mapping:**
+
+| RCA Primitive | Go Construct |
+|---------------|-------------|
+| CellData | Struct with `CellDataTag` enum field and `uint8` value |
+| DataPlane | `struct` with exported fields |
+| ControlPlane | `struct` with `iota`-based enum fields |
+| Cell | `struct` with pointer receiver method `Execute` |
+| Engine Loop | `for { switch }` on state |
+
+**Key Observations:**
+- Go's `iota`-based constants provide a clean enum pattern for `State`, `Mode`, `Task`, and `CellDataTag`. The `String()` method on each type gives display-name functionality similar to Rust's `Debug` trait or Java's `displayName()`.
+- CellData is represented as a struct with a tag field and a value field — the same manual tagged union pattern used in C, but with Go's zero-value initialization providing safe defaults. There are no algebraic types or `std::variant` equivalents in Go.
+- Cell isolation is partially enforced. The `ctx *DataPlane` pointer parameter allows cells to read and technically also write the Data Plane. Go has no `const` pointer or immutable reference concept. Enforcement is by convention.
+- Go's value semantics for structs means the handoff transfer is a natural copy. `handoffTransfer := pt.Handoff` creates a copy, and `pt.Handoff = CellNone()` resets the original — no ownership model or `std::mem::take` needed.
+- Fixed-size arrays (`[NumCells]Cell`) mirror the Rust implementation's compile-time sizing directly, unlike the dynamic-language variants that use slices or lists.
+- The single-package structure (`package rca`) with all types in one namespace avoids Go's typical multi-package ceremony. This maps well to the Rust `pub use` re-export pattern in `mod.rs`.
+- Go modules (`go.mod`) provide dependency management, though this variant has zero external dependencies.
+- The lack of sum types means exhaustive switch checking is not compiler-enforced. A missing `case` branch in a `switch` on `CellDataTag` compiles without warning.
+
+**Compatibility Rating:** Strong — Go's simplicity and explicit style align well with RCA's philosophy. The primary friction points are the lack of algebraic types for CellData and the absence of immutable reference enforcement.
+
+---
+
 ## 4. Language-Architecture Compatibility Matrix
 
 ```mermaid
@@ -362,6 +392,7 @@ quadrantChart
     Cpp: [0.75, 0.88]
     Haskell: [0.95, 0.60]
     Java: [0.65, 0.80]
+    Go: [0.45, 0.82]
     C: [0.60, 0.82]
     Python: [0.20, 0.70]
     Lisp: [0.15, 0.65]
@@ -379,6 +410,7 @@ quadrantChart
 | **Haskell** | Language-level (immutability) | Algebraic data type | Different idiom | Strong |
 | **Java** | Partial (package visibility) | Sealed interface + record | Strong | Strong |
 | **C** | Compile-time (`const *`) | Manual tagged union | Strong | Strong |
+| **Go** | Convention only (no `const` ptr) | Struct with tag field | Strong | Strong |
 | **Python** | Discipline only | `Union` + `isinstance` | Moderate | Moderate |
 | **Common Lisp** | Discipline only | Tagged list | Moderate | Moderate |
 | **JavaScript** | Discipline only | Tagged object | Moderate | Moderate |
@@ -401,10 +433,11 @@ quadrantChart
 | **Common Lisp** | — | `sbcl --script main.lisp` | `sbcl` |
 | **JavaScript** | — | `node main.js` | `node` |
 | **Java** | `make` | `make run` | `javac`, `java` (21+) |
+| **Go** | `go build` | `go run main.go` | `go` |
 
 ### 5.2 Expected Output (All Variants)
 
-All ten implementations produce the following output (formatting variations such as leading spaces in Ada's `Natural'Image` are noted but do not affect semantic equivalence):
+All eleven implementations produce the following output (formatting variations such as leading spaces in Ada's `Natural'Image` are noted but do not affect semantic equivalence):
 
 ```
 >>>
@@ -474,7 +507,7 @@ stateDiagram-v2
 
 ### 6.1 The Architecture Survived Translation
 
-The most significant finding is that none of the ten ports required rethinking the architecture. Every language could express all five primitives and all three contracts. The implementation details varied — tagged unions vs. algebraic types vs. tagged objects — but the structure remained isomorphic. This is strong empirical evidence that RCA is genuinely language-agnostic.
+The most significant finding is that none of the eleven ports required rethinking the architecture. Every language could express all five primitives and all three contracts. The implementation details varied — tagged unions vs. algebraic types vs. tagged objects — but the structure remained isomorphic. This is strong empirical evidence that RCA is genuinely language-agnostic.
 
 ### 6.2 The CellData Problem Is Universal
 
@@ -492,6 +525,7 @@ graph TD
     S --> Cpp["C++: std::variant"]
     S --> Java["Java: sealed interface + record"]
     S --> C["C: struct + enum tag + union"]
+    S --> Go["Go: struct + tag field"]
     D --> Python["Python: Union + isinstance"]
     D --> Lisp["Lisp: tagged list (:byte 42)"]
     D --> JS["JavaScript: { tag, value }"]
@@ -559,15 +593,15 @@ The ownership semantics in Rust formalize something that is conceptually straigh
 
 ### 7.1 Complete Mapping Table
 
-| RCA Primitive | Rust | C | C++ | Python | Ada | Zig | Haskell | Lisp | JavaScript | Java |
-|---------------|------|---|-----|--------|-----|-----|---------|------|-----------|------|
-| **CellData** | `enum` | tagged union | `std::variant` | `Union` | discriminated record | `union(enum)` | ADT | tagged list | tagged object | sealed interface |
-| **DataPlane** | `struct` | `struct` | `struct` | `@dataclass` | `record` | `struct` | record type | `defstruct` | factory function | class |
-| **ControlPlane** | `struct` + enums | `struct` + enums | `struct` + `enum class` | `@dataclass` + `Enum` | `record` + enums | `struct` + enums | record + ADTs | `defstruct` + keywords | object + `Object.freeze` | class + enums |
-| **Cell.execute** | `&mut self, &ctx, handoff` | `Cell*, const ctx*, handoff` | `Cell&, const ctx&, handoff` | `self, ctx, handoff` | `in out Cell, in ctx, handoff` | `*Cell, *const ctx, handoff` | `Cell -> ctx -> handoff -> CellData` | `cell ctx handoff` | `cell, ctx, handoff` | `this, ctx, handoff` |
-| **Engine Loop** | `loop { match }` | `for(;;) switch` | `for(;;) switch` | `while True: if` | `loop case` | `while switch` | tail recursion | `loop ecase` | `for(;;) switch` | `while(true) switch` |
-| **Module System** | `mod` / `use` | headers + `.c` | headers + `.cpp` | packages + `import` | child packages `.ads`/`.adb` | `@import` | modules + `import` | `defpackage` + `load` | `require`/`exports` | `package` + `import` |
-| **Error Handling** | `Result<T, E>` | `int` return code | `int` return code | exceptions | exceptions | `!void` error union | `Either` / `IO` | conditions | exceptions | exceptions |
+| RCA Primitive | Rust | C | C++ | Python | Ada | Zig | Haskell | Lisp | JavaScript | Java | Go |
+|---------------|------|---|-----|--------|-----|-----|---------|------|-----------|------|-----|
+| **CellData** | `enum` | tagged union | `std::variant` | `Union` | discriminated record | `union(enum)` | ADT | tagged list | tagged object | sealed interface | struct + tag |
+| **DataPlane** | `struct` | `struct` | `struct` | `@dataclass` | `record` | `struct` | record type | `defstruct` | factory function | class | `struct` |
+| **ControlPlane** | `struct` + enums | `struct` + enums | `struct` + `enum class` | `@dataclass` + `Enum` | `record` + enums | `struct` + enums | record + ADTs | `defstruct` + keywords | object + `Object.freeze` | class + enums | `struct` + `iota` |
+| **Cell.execute** | `&mut self, &ctx, handoff` | `Cell*, const ctx*, handoff` | `Cell&, const ctx&, handoff` | `self, ctx, handoff` | `in out Cell, in ctx, handoff` | `*Cell, *const ctx, handoff` | `Cell -> ctx -> handoff -> CellData` | `cell ctx handoff` | `cell, ctx, handoff` | `this, ctx, handoff` | `*Cell, *ctx, handoff` |
+| **Engine Loop** | `loop { match }` | `for(;;) switch` | `for(;;) switch` | `while True: if` | `loop case` | `while switch` | tail recursion | `loop ecase` | `for(;;) switch` | `while(true) switch` | `for { switch }` |
+| **Module System** | `mod` / `use` | headers + `.c` | headers + `.cpp` | packages + `import` | child packages `.ads`/`.adb` | `@import` | modules + `import` | `defpackage` + `load` | `require`/`exports` | `package` + `import` | `package` + `import` |
+| **Error Handling** | `Result<T, E>` | `int` return code | `int` return code | exceptions | exceptions | `!void` error union | `Either` / `IO` | conditions | exceptions | exceptions | `error` return |
 
 ---
 
@@ -579,7 +613,7 @@ The cell isolation contract is enforced at different levels across the variants.
 graph LR
     L1["Level 1: Language-Level<br/>(Haskell)"] --> L2["Level 2: Type-System<br/>(Rust, Ada)"]
     L2 --> L3["Level 3: Qualifier<br/>(C, C++, Zig)"]
-    L3 --> L4["Level 4: Convention<br/>(Java, Python, Lisp, JS)"]
+    L3 --> L4["Level 4: Convention<br/>(Go, Java, Python, Lisp, JS)"]
 
     style L1 fill:#2d6a4f,color:#fff
     style L2 fill:#40916c,color:#fff
@@ -592,7 +626,7 @@ graph LR
 | **Level 1** | Immutability is the default; mutation requires explicit opt-in | Haskell | Nothing — violation is a type error |
 | **Level 2** | Type system prevents mutation via borrow rules or parameter modes | Rust, Ada | Nothing — violation is a compile error |
 | **Level 3** | `const`/`*const` qualifiers prevent mutation through that reference | C, C++, Zig | Cast-away-const is possible but requires deliberate circumvention |
-| **Level 4** | No enforcement; isolation is maintained by developer discipline | Java, Python, Lisp, JS | Accidental mutation is silent and undetected |
+| **Level 4** | No enforcement; isolation is maintained by developer discipline | Go, Java, Python, Lisp, JS | Accidental mutation is silent and undetected |
 
 ---
 
@@ -600,7 +634,7 @@ graph LR
 
 ### 9.1 What the Porting Process Proves
 
-The successful port to ten languages validates several claims from the RCA design:
+The successful port to eleven languages validates several claims from the RCA design:
 
 1. **Language-agnostic execution model.** The five primitives and three contracts are expressible in systems languages, functional languages, dynamic languages, and managed runtimes. No language required architectural modifications.
 
@@ -608,11 +642,11 @@ The successful port to ten languages validates several claims from the RCA desig
 
 3. **The architecture is minimal.** No variant required adding concepts that the Rust implementation lacked. The five primitives are sufficient.
 
-4. **Extension points translate.** The FREEZE/MUTABLE annotation pattern (where to add new tasks, data types, thread variants) was clear in every language. A developer in any of the ten languages can identify where to extend the framework.
+4. **Extension points translate.** The FREEZE/MUTABLE annotation pattern (where to add new tasks, data types, thread variants) was clear in every language. A developer in any of the eleven languages can identify where to extend the framework.
 
 ### 9.2 What the Porting Process Reveals
 
-1. **The architecture favors statically-typed languages.** While all ten variants work, the statically-typed variants (Rust, Ada, Zig, C++, C, Java, Haskell) provide compile-time enforcement of at least some contracts. The dynamically-typed variants (Python, Common Lisp, JavaScript) rely entirely on discipline.
+1. **The architecture favors statically-typed languages.** While all eleven variants work, the statically-typed variants (Rust, Ada, Zig, C++, C, Java, Go, Haskell) provide compile-time enforcement of at least some contracts. The dynamically-typed variants (Python, Common Lisp, JavaScript) rely entirely on discipline.
 
 2. **Algebraic data types are the ideal CellData representation.** Languages with native ADTs (Rust, Haskell, Zig) express CellData with zero boilerplate and full safety. Every other language requires some workaround.
 
@@ -622,7 +656,7 @@ The successful port to ten languages validates several claims from the RCA desig
 
 ```mermaid
 flowchart LR
-    subgraph "All 10 Variants"
+    subgraph "All 11 Variants"
         direction TB
         DP[Data Plane<br/>config, I/O, perf,<br/>logs, cells, activity] -.->|read-only| C0
         DP -.->|read-only| C1
@@ -669,11 +703,10 @@ flowchart TD
 
 ### 10.3 Candidate Languages for Future Ports
 
-Based on the insights from the current ten variants, the following languages are strong candidates for future ports:
+Based on the insights from the current eleven variants, the following languages are strong candidates for future ports:
 
 | Language | Expected Compatibility | Rationale |
 |----------|----------------------|-----------|
-| **Go** | Strong | Structs, interfaces, explicit error handling. Channels could provide an alternative handoff mechanism. |
 | **Forth** | Strong | Stack-based handoff is a natural fit. Deterministic, used in embedded/aerospace. |
 | **Erlang/Elixir** | Strong | Actor model ancestry, pattern matching, immutable data. |
 | **Nim** | Strong | Algebraic types, systems focus, compiles to C. |
@@ -690,8 +723,8 @@ The cross-language porting exercise demonstrates that Regulated Cell Architectur
 
 The variants exist on a spectrum of enforcement. At one end, Haskell and Ada enforce RCA's contracts at the language or type-system level — violations are compilation errors. At the other end, Python, Common Lisp, and JavaScript rely on developer discipline — violations are silent. The architecture provides value at every point on this spectrum, but its guarantees are strongest in languages that can enforce its contracts.
 
-The fact that ten languages with fundamentally different paradigms — imperative, functional, object-oriented, dynamic, systems-level — all produced semantically identical output from the same architectural blueprint is the strongest possible validation of RCA's claim to be a portable execution model.
+The fact that eleven languages with fundamentally different paradigms — imperative, functional, object-oriented, dynamic, systems-level — all produced semantically identical output from the same architectural blueprint is the strongest possible validation of RCA's claim to be a portable execution model.
 
 ---
 
-*This analysis was produced through systematic porting of the reference Rust implementation. All ten variants are maintained in the `variants/` directory of this repository.*
+*This analysis was produced through systematic porting of the reference Rust implementation. All eleven variants are maintained in the `variants/` directory of this repository.*

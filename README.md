@@ -321,18 +321,41 @@ rca = { path = "../regulated-cell-architecture" }
 
 ```text
 regulated-cell-architecture/
-├── src/
-│   ├── engine/
-│   ├── thread/
-│   ├── cell/
-│   ├── data/
-│   ├── control/
-│   └── context/
+├── src/                          # Rust reference implementation
+│   ├── main.rs                   # Runtime entry point
+│   ├── lib.rs                    # Library root
+│   └── rca/
+│       ├── mod.rs                # Module re-exports
+│       ├── data.rs               # Data Plane
+│       ├── control.rs            # Control Plane
+│       ├── cell.rs               # Cell + Task + CellData
+│       ├── thread.rs             # ProgramThread + Effect
+│       └── engine.rs             # Engine + run loop
 │
-├── examples/
-├── docs/
+├── variants/                     # Cross-language implementations
+│   ├── c/                        # C variant (gcc, C17)
+│   ├── cpp/                      # C++ variant (g++, C++17)
+│   ├── python/                   # Python variant (3.10+)
+│   ├── ada/                      # Ada variant (GNAT, Ada 2012)
+│   ├── zig/                      # Zig variant (0.15+)
+│   ├── haskell/                  # Haskell variant (GHC 9.6+)
+│   ├── lisp/                     # Common Lisp variant (SBCL)
+│   ├── javascript/               # JavaScript variant (Node.js)
+│   ├── java/                     # Java variant (21+)
+│   └── go/                       # Go variant (1.24+)
+│
+├── docs/                         # Documentation
+│   ├── RCA_ANALYSIS.md           # Full architecture analysis
+│   └── RCA_CROSS_LANGUAGE_VARIANTS.md  # Cross-language porting analysis
+│
 └── README.md
 ```
+
+### 11.1 Cross-Language Variants
+
+The RCA execution model has been ported to ten additional languages beyond the Rust reference implementation. All eleven implementations produce identical runtime output, validating the architecture's claim to be language-agnostic. Each variant preserves the five core primitives (DataPlane, ControlPlane, Cell, Thread, Engine) and the three behavioral contracts (cell isolation, engine authority, regulated flow).
+
+See [docs/RCA_CROSS_LANGUAGE_VARIANTS.md](docs/RCA_CROSS_LANGUAGE_VARIANTS.md) for a full analysis of each variant, compatibility ratings, and insights from the porting process.
 
 ---
 
@@ -352,15 +375,17 @@ RCA draws inspiration from:
 
 This project is:
 
-* Experimental
+* Experimental → Evolving Framework
 * Iterative
 * Under active refinement
+* **Portability validated** across 11 languages (Rust, C, C++, Python, Ada, Zig, Haskell, Common Lisp, JavaScript, Java, Go)
 
 Expect:
 
 * API changes
 * Structural evolution
 * Ongoing experimentation
+* Additional language variants
 
 ---
 
